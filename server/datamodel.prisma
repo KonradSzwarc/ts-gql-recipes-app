@@ -15,5 +15,6 @@ type Recipe {
   image: String!
   user: User
   favourite: Boolean! @default(value: false)
+  createdAt: DateTime! @createdAt
 }
 

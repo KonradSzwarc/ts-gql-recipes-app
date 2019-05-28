@@ -28,9 +28,9 @@ const useStyles = makeStyles(() => ({
 }));
 
 const RecipeReviewCard = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<Element>(null);
 
-  const handleClick = event => setAnchorEl(event.currentTarget);
+  const handleClick = (event: React.MouseEvent<HTMLInputElement>) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
   const classes = useStyles();
 
