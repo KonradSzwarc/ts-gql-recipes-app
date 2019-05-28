@@ -8,6 +8,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
+import signOut from './signOut';
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -39,7 +41,7 @@ const Navbar = () => {
                 Moje przepisy
               </Typography>
             </Link>
-            <Button color="inherit">Wyloguj się</Button>
+            <Button onClick={signOut} color="inherit">Wyloguj się</Button>
           </Toolbar>
         </AppBar>
       </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -11,8 +11,23 @@ import Container from '@material-ui/core/Container';
 
 import Input from 'components/Input';
 import useStyles from './styles';
+import signUp from './store/signUp';
 
-const SignIn = () => {
+const SignUp = () => {
+  const [values, setValues] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+  });
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setValues({ ...values, [e.target.name]: e.target.value });
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await signUp(values);
+  };
+
   const classes = useStyles();
 
   return (
@@ -25,16 +40,38 @@ const SignIn = () => {
         <Typography component="h1" variant="h5">
           Rejestracja
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={onSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <Input name="fullName" required label="Imię i nazwisko" autoFocus />
+              <Input
+                name="fullName"
+                required
+                label="Imię i nazwisko"
+                autoFocus
+                onChange={onChange}
+                value={values.fullName}
+              />
             </Grid>
             <Grid item xs={12}>
-              <Input name="email" required label="Adres e-mail" autoComplete="email" />
+              <Input
+                name="email"
+                required
+                label="Adres e-mail"
+                autoComplete="email"
+                onChange={onChange}
+                value={values.email}
+              />
             </Grid>
             <Grid item xs={12}>
-              <Input name="password" required label="Hasło" autoComplete="current-password" type="password" />
+              <Input
+                name="password"
+                required
+                label="Hasło"
+                autoComplete="current-password"
+                type="password"
+                onChange={onChange}
+                value={values.password}
+              />
             </Grid>
           </Grid>
           <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
@@ -53,4 +90,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;

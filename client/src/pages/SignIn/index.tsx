@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -9,10 +9,23 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
+import signIn from './store/signIn';
 import Input from 'components/Input';
 import useStyles from './styles';
 
 const SignIn = () => {
+  const [values, setValues] = useState({
+    email: '',
+    password: '',
+  });
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => setValues({ ...values, [e.target.name]: e.target.value });
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await signIn(values);
+  };
+
   const classes = useStyles();
 
   return (
@@ -25,13 +38,13 @@ const SignIn = () => {
         <Typography component="h1" variant="h5">
           Logowanie
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={onSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <Input name="email" required label="Adres e-mail" autoComplete="email" autoFocus />
+              <Input name="email" required label="Adres e-mail" autoComplete="email" autoFocus onChange={onChange} value={values.email} />
             </Grid>
             <Grid item xs={12}>
-              <Input name="password" required label="Hasło" autoComplete="current-password" type="password" />
+              <Input name="password" required label="Hasło" autoComplete="current-password" type="password" onChange={onChange} value={values.password} />
             </Grid>
           </Grid>
           <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
