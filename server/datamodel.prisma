@@ -3,4 +3,17 @@ type User {
   email: String! @unique
   password: String! @unique
   fullName: String!
+  recipes: [Recipe!]!
 }
+
+type Recipe {
+  id: ID! @id
+  title: String!
+  description: String!
+  ingredients: String!
+  preparation: String!
+  image: String!
+  user: User
+  favourite: Boolean! @default(value: false)
+}
+
