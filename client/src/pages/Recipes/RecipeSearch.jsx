@@ -33,7 +33,6 @@ const RecipeSearch = () => {
         onChange={handleChange}
         margin="normal"
         variant="outlined"
-        type="search"
         fullWidth
         placeholder="Wyszukaj przepisy"
       />

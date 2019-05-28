@@ -32,6 +32,19 @@ const Mutation = {
     ctx.response.clearCookie('token');
     return { message: 'Logged out' };
   },
+  createRecipe: async (parent, args, ctx, info) => {
+    args.data.user = { connect: { id: ctx.request.userId } };
+    const recipe = await ctx.prisma.mutation.createRecipe(args, info);
+    return recipe;
+  },
+  updateRecipe: async (parent, args, ctx, info) => {
+    const recipe = await ctx.prisma.mutation.updateRecipe(args, info);
+    return recipe;
+  },
+  deleteRecipe: async (parent, args, ctx, info) => {
+    const recipe = await ctx.prisma.mutation.deleteRecipe(args, info);
+    return recipe;
+  },
 };
 
 module.exports = Mutation;
