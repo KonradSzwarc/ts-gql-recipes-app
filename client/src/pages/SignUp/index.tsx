@@ -12,7 +12,7 @@ import Container from '@material-ui/core/Container';
 
 import useStyles from './styles';
 
-const SignIn = () => {
+const SignUp = () => {
   const classes = useStyles();
 
   return (
@@ -78,4 +78,4 @@ const SignIn = () => {
   );
 }
 
-export default SignIn;
+export default SignUp;

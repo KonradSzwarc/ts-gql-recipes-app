@@ -31,23 +31,18 @@ const Recipes = () => {
         </Typography>
         <RecipeSearch />
         <Typography className={classes.categories} component="h5" variant="h5" align="center" color="textSecondary">
-          Kategorie
+          Wyświetlane przepisy
         </Typography>
         <div className={classes.heroButtons}>
           <Grid container spacing={2} justify="center">
             <Grid item>
               <Button variant="outlined" color="primary">
+                Wszystkie
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button variant="outlined" color="primary">
                 Ulubione
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button variant="outlined" color="primary">
-                Ryby
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button variant="outlined" color="primary">
-                makarony
               </Button>
             </Grid>
           </Grid>

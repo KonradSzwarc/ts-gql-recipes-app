@@ -6,6 +6,7 @@ require('express-async-errors');
 const { GraphQLServer } = require('graphql-yoga');
 const { Prisma } = require('prisma-binding');
 const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 
 const Mutation = require('resolvers/Mutation');
 const Query = require('resolvers/Query');
@@ -30,7 +31,21 @@ const server = new GraphQLServer({
 });
 
 server.express.use(cookieParser());
-// TODO: Middleware autoryzujący usera (dodający jego id do requesta)
+server.express.use((req, res, next) => {
+  const { token } = req.cookies;
+
+  if (token) {
+    try {
+      const { userId } = jwt.verify(token, process.env.JWT_SECRET);
+      req.userId = userId;
+    } catch (ex) {
+      req.userId = null;
+    }
+  } else {
+    req.userId = null;
+  }
+  next();
+});
 server.express.use((err, req, res, next) => {
   if (err) {
     console.error(err);
@@ -46,7 +61,7 @@ server.start(
       origin: process.env.CLIENT_URL,
     },
   },
-  (deets) => {
+  deets => {
     console.info(`App is now running on port ${deets.port}`);
   },
 );
