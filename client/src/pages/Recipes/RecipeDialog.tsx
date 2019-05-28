@@ -1,12 +1,14 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+
+import Input from 'components/Input';
+import TextArea from 'components/TextArea';
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -30,63 +32,19 @@ const RecipeDialog = () => {
         <form className={classes.form} noValidate>
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              <TextField
-                name="title"
-                variant="outlined"
-                required
-                fullWidth
-                id="title"
-                label="Tytuł"
-                autoFocus
-              />
+              <Input name="title" required label="Tytuł" autoFocus />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                name="image"
-                variant="outlined"
-                required
-                fullWidth
-                id="image"
-                label="Link do zdjęcia"
-                autoFocus
-              />
+              <Input name="image" required label="Link do zdjęcia" autoFocus />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                name="description"
-                variant="outlined"
-                required
-                fullWidth
-                id="description"
-                label="Krótki opis"
-                multiline
-                rows="4"
-                rowsMax="3"
-              />
+              <TextArea name="description" required label="Krótki opis" rowsMax={3} />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                name="ingredients"
-                variant="outlined"
-                required
-                fullWidth
-                id="ingredients"
-                label="Składniki"
-                multiline
-                rows="4"
-              />
+              <TextArea name="ingredients" required label="Składniki" />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                name="preparation"
-                variant="outlined"
-                required
-                fullWidth
-                id="preparation"
-                label="Przygotowanie"
-                multiline
-                rows="4"
-              />
+              <TextArea name="preparation" required label="Przygotowanie" />
             </Grid>
           </Grid>
         </form>

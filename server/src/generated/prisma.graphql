@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/recipes-app-typescript-graphql/recipes-app/dev
-# timestamp: Tue May 28 2019 14:43:46 GMT+0200 (Central European Summer Time)
+# timestamp: Tue May 28 2019 14:57:37 GMT+0200 (Central European Summer Time)
 
 type AggregateRecipe {
   count: Int!
@@ -13,6 +13,8 @@ type BatchPayload {
   """The number of nodes that have been affected by the Batch operation."""
   count: Long!
 }
+
+scalar DateTime
 
 """
 The `Long` scalar type represents non-fractional signed whole numeric values.
@@ -86,6 +88,7 @@ type Recipe implements Node {
   image: String!
   user: User
   favourite: Boolean!
+  createdAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -148,6 +151,8 @@ enum RecipeOrderByInput {
   image_DESC
   favourite_ASC
   favourite_DESC
+  createdAt_ASC
+  createdAt_DESC
 }
 
 type RecipePreviousValues {
@@ -158,6 +163,7 @@ type RecipePreviousValues {
   preparation: String!
   image: String!
   favourite: Boolean!
+  createdAt: DateTime!
 }
 
 input RecipeScalarWhereInput {
@@ -413,6 +419,28 @@ input RecipeScalarWhereInput {
 
   """All values that are not equal to given value."""
   favourite_not: Boolean
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
 }
 
 type RecipeSubscriptionPayload {
@@ -770,6 +798,28 @@ input RecipeWhereInput {
 
   """All values that are not equal to given value."""
   favourite_not: Boolean
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
   user: UserWhereInput
 }
 

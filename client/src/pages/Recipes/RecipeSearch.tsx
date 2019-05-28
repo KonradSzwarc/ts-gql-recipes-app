@@ -21,7 +21,7 @@ const RecipeSearch = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState('');
 
-  const handleChange = event => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 
